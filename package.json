@@ -1,6 +1,6 @@
 {
   "name": "gf",
-  "version": "0.0.0",
+  "version": "0.0.1-0",
   "description": "A command line tool for generating Vue file",
   "main": "./bin/index.js",
   "bin": {
@@ -25,7 +25,9 @@
     "url": "https://github.com/iihll/gf/issues"
   },
   "homepage": "https://github.com/iihll/gf#readme",
-  "files": ["bin"],
+  "files": [
+    "bin"
+  ],
   "devDependencies": {
     "@types/node": "^17.0.8",
     "typescript": "^4.5.4"
