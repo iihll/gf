@@ -1,6 +1,6 @@
 {
   "name": "gf",
-  "version": "0.0.1-0",
+  "version": "0.0.1",
   "description": "A command line tool for generating Vue file",
   "main": "./bin/index.js",
   "bin": {
