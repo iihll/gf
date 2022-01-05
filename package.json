@@ -1,0 +1,33 @@
+{
+  "name": "gf",
+  "version": "0.0.0",
+  "description": "A command line tool for generating Vue file",
+  "main": "./bin/index.js",
+  "bin": {
+    "gf": "./bin/index.js"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iihll/gf.git"
+  },
+  "keywords": [
+    "generate",
+    "file",
+    "vue",
+    "command"
+  ],
+  "author": "iihll",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iihll/gf/issues"
+  },
+  "homepage": "https://github.com/iihll/gf#readme",
+  "files": ["bin"],
+  "devDependencies": {
+    "@types/node": "^17.0.8",
+    "typescript": "^4.5.4"
+  }
+}
