@@ -22,7 +22,12 @@ const COMMANDS = {
 function main(args) {
     let result = null;
     if (args.length) {
-        result = COMMANDS[args[0]](args);
+        if (COMMANDS[args[0]]) {
+            result = COMMANDS[args[0]](args);
+        }
+        else {
+            result = COMMANDS['help']();
+        }
     }
     else {
         result = COMMANDS['help']();
