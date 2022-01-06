@@ -48,7 +48,7 @@ function help() {
 }
 
 function version() {
-    const packageJson = fs.readFileSync(path.resolve(__dirname, '../../package.json'));
+    const packageJson = fs.readFileSync(path.resolve(__dirname, '../package.json'));
     return JSON.parse(packageJson.toString()).version;
 }
 
