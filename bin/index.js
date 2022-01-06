@@ -1,24 +1,70 @@
-#!/usr/bin/env node
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const generate_1 = __importDefault(require("./commands/generate"));
-const help_1 = __importDefault(require("./commands/help"));
-const version_1 = __importDefault(require("./commands/version"));
+#! /usr/bin/env node
+'use strict';
+
+var fs = require('fs');
+var child_process = require('child_process');
+var path = require('path');
+var os = require('os');
+
+const DEFAULT_TEMPLATE = `<template>
+  
+</template>
+
+<script>
+export default {
+  
+}
+</script>
+`;
+function generate(args) {
+    const filePath = args[1];
+    let dict = filePath.split(/\\|\//);
+    const fileName = path.sep + dict.pop();
+    const suffix = '.vue';
+    const cwd = process.cwd();
+    dict = path.resolve(cwd, dict.join(path.sep));
+    if (!fs.existsSync(dict)) {
+        fs.mkdirSync(dict, { recursive: true });
+    }
+    const finalPath = dict + fileName + suffix;
+    if (finalPath) {
+        const template = DEFAULT_TEMPLATE;
+        fs.writeFileSync(finalPath, template);
+        child_process.execSync('code -g ' + finalPath + ':2:3');
+        return 'File created successfully';
+    }
+    return 'Generate your vue file for using GF';
+}
+
+function help() {
+    return [
+        'GF (Generate vue file) usage',
+        '',
+        'gf help                       Get detailed help for a command',
+        'gf gen <file_name>            Generate your vue file for using GF',
+        'gf version                    Display GF version',
+        '',
+    ].join(os.EOL);
+}
+
+function version() {
+    const packageJson = fs.readFileSync(path.resolve(__dirname, '../../package.json'));
+    return JSON.parse(packageJson.toString()).version;
+}
+
 const COMMANDS = {
-    'version': version_1.default,
-    '-v': version_1.default,
-    'g': generate_1.default,
-    'gen': generate_1.default,
-    'generate': generate_1.default,
-    '-?': help_1.default,
-    'help': help_1.default,
-    '-h': help_1.default,
-    '-help': help_1.default,
-    '--help': help_1.default,
+    version: version,
+    '-v': version,
+    g: generate,
+    gen: generate,
+    generate: generate,
+    '-?': help,
+    help: help,
+    '-h': help,
+    '-help': help,
+    '--help': help,
 };
+
 function main(args) {
     let result = null;
     if (args.length) {

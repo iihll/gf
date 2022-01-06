@@ -1,26 +1,9 @@
-#!/usr/bin/env node
-
-import generate from "./commands/generate"
-import help from "./commands/help"
-import version from "./commands/version"
-
-const COMMANDS: Record<string, Function> = {
-  'version': version,
-  '-v': version,
-  'g': generate,
-  'gen': generate,
-  'generate': generate,
-  '-?': help,
-  'help': help,
-  '-h': help,
-  '-help': help,
-  '--help': help,
-}
+import { COMMANDS } from './commands'
 
 function main(args: string[]) {
   let result = null
   if (args.length) {
-    if(COMMANDS[args[0]]) {
+    if (COMMANDS[args[0]]) {
       result = COMMANDS[args[0]](args)
     } else {
       result = COMMANDS['help']()
