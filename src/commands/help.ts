@@ -1,6 +1,24 @@
 import { EOL } from 'os'
 
-export default function help(): string {
+const generateInfo = `Generate your vue file using GF
+
+For example:
+  gf g test
+  gf gen test
+  gf generate test
+    `
+
+const HELP_MAP = {
+  g: generateInfo,
+  gen: generateInfo,
+  generate: generateInfo
+}
+
+export default function help(args: string[]): string {
+  if(args && args.length) {
+    return HELP_MAP[args[0]]
+  }
+
   return [
     'GF (Generate vue file) usage',
     '',

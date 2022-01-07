@@ -13,7 +13,6 @@ export default defineConfig({
   plugins: [
     typescript({
       tsconfig: './tsconfig.json',
-      sourceMap: true,
     }),
     nodeResolve(),
   ],

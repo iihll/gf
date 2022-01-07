@@ -5,22 +5,13 @@ var fs = require('fs');
 var child_process = require('child_process');
 var path = require('path');
 var os = require('os');
+var process$1 = require('process');
 
-const DEFAULT_TEMPLATE = `<template>
-  
-</template>
-
-<script>
-export default {
-  
-}
-</script>
-`;
-function generate(args) {
+function generate(args, config) {
+    const { template, open, suffix } = config;
     const filePath = args[1];
     let dict = filePath.split(/\\|\//);
     const fileName = path.sep + dict.pop();
-    const suffix = '.vue';
     const cwd = process.cwd();
     dict = path.resolve(cwd, dict.join(path.sep));
     if (!fs.existsSync(dict)) {
@@ -28,15 +19,31 @@ function generate(args) {
     }
     const finalPath = dict + fileName + suffix;
     if (finalPath) {
-        const template = DEFAULT_TEMPLATE;
         fs.writeFileSync(finalPath, template);
-        child_process.execSync('code -g ' + finalPath + ':2:3');
+        if (open) {
+            child_process.execSync('code -g ' + finalPath + ':2:3');
+        }
         return 'File created successfully';
     }
     return 'Generate your vue file for using GF';
 }
 
-function help() {
+const generateInfo = `Generate your vue file using GF
+
+For example:
+  gf g test
+  gf gen test
+  gf generate test
+    `;
+const HELP_MAP = {
+    g: generateInfo,
+    gen: generateInfo,
+    generate: generateInfo
+};
+function help(args) {
+    if (args && args.length) {
+        return HELP_MAP[args[0]];
+    }
     return [
         'GF (Generate vue file) usage',
         '',
@@ -65,18 +72,46 @@ const COMMANDS = {
     '--help': help,
 };
 
+const VUE2_TEMPLATE = `<template>
+  
+</template>
+
+<script>
+export default {
+  
+}
+</script>
+`;
+const defaultConfig = {
+    version: '2',
+    open: true,
+    suffix: '.vue',
+    template: VUE2_TEMPLATE
+};
+
+function getTemplate() {
+    const template = fs.readFileSync(path.join(process$1.cwd(), './tel.vue'));
+    return template;
+}
+
+function mergeConfig() {
+    const template = getTemplate();
+    return {
+        ...defaultConfig,
+        template: template.toString()
+    };
+}
+
 function main(args) {
     let result = null;
-    if (args.length) {
+    const config = mergeConfig();
+    if (args && args.length && args.length > 1) {
         if (COMMANDS[args[0]]) {
-            result = COMMANDS[args[0]](args);
-        }
-        else {
-            result = COMMANDS['help']();
+            result = COMMANDS[args[0]](args, config);
         }
     }
     else {
-        result = COMMANDS['help']();
+        result = COMMANDS['help'](args);
     }
     console.log(result);
 }
