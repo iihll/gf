@@ -5,6 +5,7 @@ var fs = require('fs');
 var child_process = require('child_process');
 var path = require('path');
 var os = require('os');
+var http = require('http');
 var process$1 = require('process');
 
 function generate(args, config) {
@@ -47,11 +48,21 @@ function help(args) {
     return [
         'GF (Generate vue file) usage',
         '',
-        'gf help                       Get detailed help for a command',
-        'gf gen <file_name>            Generate your vue file for using GF',
-        'gf version                    Display GF version',
+        'gf help                       get detailed help for a command',
+        'gf gen <file_name>            generate your vue file for using GF',
+        'gf ui                         start and open the gf ui',
+        'gf version                    display GF version',
         '',
     ].join(os.EOL);
+}
+
+function ui() {
+    const server = http.createServer((req, res) => {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('okay');
+    });
+    server.listen(8000, '0.0.0.0', () => { });
+    return 'Ready on http://localhost:8000';
 }
 
 function version() {
@@ -60,16 +71,17 @@ function version() {
 }
 
 const COMMANDS = {
-    version: version,
+    version,
     '-v': version,
     g: generate,
     gen: generate,
-    generate: generate,
+    generate,
     '-?': help,
     help: help,
     '-h': help,
     '-help': help,
     '--help': help,
+    ui
 };
 
 const VUE2_TEMPLATE = `<template>
@@ -105,7 +117,7 @@ function mergeConfig() {
 function main(args) {
     let result = null;
     const config = mergeConfig();
-    if (args && args.length && args.length > 1) {
+    if (args && args.length) {
         if (COMMANDS[args[0]]) {
             result = COMMANDS[args[0]](args, config);
         }

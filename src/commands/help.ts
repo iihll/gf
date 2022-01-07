@@ -22,9 +22,10 @@ export default function help(args: string[]): string {
   return [
     'GF (Generate vue file) usage',
     '',
-    'gf help                       Get detailed help for a command',
-    'gf gen <file_name>            Generate your vue file for using GF',
-    'gf version                    Display GF version',
+    'gf help                       get detailed help for a command',
+    'gf gen <file_name>            generate your vue file for using GF',
+    'gf ui                         start and open the gf ui',
+    'gf version                    display GF version',
     '',
   ].join(EOL)
 }
