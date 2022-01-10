@@ -1,6 +1,7 @@
 import { defineConfig } from 'rollup'
 import typescript from '@rollup/plugin-typescript'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
+import { uglify } from 'rollup-plugin-uglify'
 
 export default defineConfig({
   input: './src/index.ts',
@@ -15,5 +16,6 @@ export default defineConfig({
       tsconfig: './tsconfig.json',
     }),
     nodeResolve(),
+    uglify()
   ],
 })
