@@ -1,12 +1,13 @@
 
-import defaultConfig from '../../defaultConfig'
 import getTemplate from './getTemplate'
+import getConfigJson from './getConfigJson'
 
 export function mergeConfig() {
-  const template = getTemplate()
+  const configJson = getConfigJson()
+  const template = getTemplate(configJson.template)
 
   return {
-    ...defaultConfig,
-    template: template.toString()
+    ...configJson,
+    template
   }
 }

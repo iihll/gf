@@ -7,15 +7,23 @@ For example:
   gf gen test
   gf generate test
     `
+const configInfo = `Config GF
+
+For example:
+  gf config open true
+  gf config version 3
+  gf config useTel true
+    `
 
 const HELP_MAP = {
   g: generateInfo,
   gen: generateInfo,
-  generate: generateInfo
+  generate: generateInfo,
+  config: configInfo
 }
 
 export default function help(args: string[]): string {
-  if(args && args.length) {
+  if(args && args.length && HELP_MAP.hasOwnProperty(args[0])) {
     return HELP_MAP[args[0]]
   }
 

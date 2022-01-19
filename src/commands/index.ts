@@ -2,6 +2,7 @@ import generate from './generate'
 import help from './help'
 import ui from './ui'
 import version from './version'
+import config from './config'
 
 export const COMMANDS: Record<string, Function> = {
   version,
@@ -14,5 +15,6 @@ export const COMMANDS: Record<string, Function> = {
   '-h': help,
   '-help': help,
   '--help': help,
-  ui
+  ui,
+  config
 }

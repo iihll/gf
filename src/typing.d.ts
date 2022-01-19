@@ -3,4 +3,5 @@ interface Config {
   open: boolean
   version: '2' | '3'
   suffix: '.vue'
+  useTel: boolean
 }
