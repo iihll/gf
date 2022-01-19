@@ -30,11 +30,11 @@ export default function help(args: string[]): string {
   return [
     'GF (Generate vue file) usage',
     '',
-    'gf config open true           GF global config',
-    'gf help                       get detailed help for a command',
-    'gf gen <file_name>            generate your vue file for using GF',
-    'gf ui                         start and open the GF ui',
-    'gf version                    display GF version',
+    'gf config <config_item> <value>    GF global config',
+    'gf help                            get detailed help for a command',
+    'gf gen <file_name>                 generate your vue file for using GF',
+    'gf ui                              start and open the GF ui',
+    'gf version                         display GF version',
     '',
   ].join(EOL)
 }
