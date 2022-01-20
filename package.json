@@ -1,5 +1,5 @@
 {
-  "name": "@bairong/gf",
+  "name": "gf",
   "version": "0.0.2",
   "description": "A command line tool for generating Vue file",
   "main": "./bin/index.js",
