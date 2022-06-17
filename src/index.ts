@@ -4,11 +4,14 @@ import { mergeConfig } from './utils/mergeConfig'
 
 function main(args: string[]) {
   let result = null
-  if (args && args.length > 1) {
+  if (args && args.length > 0) {
     if (COMMANDS[args[0]]) {
-      const fileName = getFileName(args, false)
-      const config = mergeConfig(fileName)
-      result = COMMANDS[args[0]](args, config)
+      if (args[1]) {
+        const fileName = getFileName(args, false)
+        let config = mergeConfig(fileName)
+        result = COMMANDS[args[0]](args, config)
+      }
+      result = COMMANDS[args[0]]()
     }
   } else {
     result = COMMANDS['help'](args)
