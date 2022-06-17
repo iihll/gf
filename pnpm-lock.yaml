@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
   '@rollup/plugin-json': ^4.1.0
@@ -14,7 +14,7 @@ specifiers:
 devDependencies:
   '@rollup/plugin-json': 4.1.0_rollup@2.63.0
   '@rollup/plugin-node-resolve': 13.1.3_rollup@2.63.0
-  '@rollup/plugin-typescript': 8.3.0_cb044fd0a247ab74c5d8bfaf0e00abae
+  '@rollup/plugin-typescript': 8.3.0_zmce7ufci6vxjroyx6xq4aflvy
   '@types/node': 17.0.8
   rollup: 2.63.0
   rollup-plugin-copy: 3.4.0
@@ -90,7 +90,7 @@ packages:
       rollup: 2.63.0
     dev: true
 
-  /@rollup/plugin-typescript/8.3.0_cb044fd0a247ab74c5d8bfaf0e00abae:
+  /@rollup/plugin-typescript/8.3.0_zmce7ufci6vxjroyx6xq4aflvy:
     resolution: {integrity: sha512-I5FpSvLbtAdwJ+naznv+B4sjXZUcIvLLceYpITAn7wAP8W0wqc5noLdGIp9HGVntNhRWXctwPYrSSFQxtl0FPA==}
     engines: {node: '>=8.0.0'}
     peerDependencies:

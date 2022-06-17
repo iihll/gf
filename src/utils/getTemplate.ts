@@ -5,16 +5,18 @@ import { homedir } from 'os'
 import getConfigJson from './getConfigJson'
 
 const TEL_MAP = {
-  VUE2_TEMPLATE: `<template>
-
+  VUE2_TEMPLATE: (fileName: string) => {
+    return `<template>
+  
 </template>
 
 <script>
 export default {
-  
+  name: '${fileName}'
 }
 </script>
-`,
+`
+  },
   VUE3_TEMPLATE: (fileName: string) => {
     return `<template>
   
@@ -33,9 +35,9 @@ export default {
   },
 }
 
-export default function getTemplate(name = 'VUE2_TEMPLATE') {
+export default function getTemplate(name = 'VUE2_TEMPLATE', fileName = 'index') {
   const config = getConfigJson()
-  let template = TEL_MAP[name](name)
+  let template = TEL_MAP[name](fileName)
   const telPath = join(cwd(), './tel.vue')
   if (existsSync(telPath) && config.useTel) {
     template = readFileSync(telPath).toString()

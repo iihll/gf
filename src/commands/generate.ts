@@ -1,14 +1,17 @@
 import { writeFileSync, existsSync, mkdirSync } from 'fs'
 import { execSync } from 'child_process'
 import { sep, resolve } from 'path'
+import { getFileName } from '../utils/getFileName'
 
 
-export default function generate(args: string[], config: Config): string {
+type Msg = string
+
+export default function generate(args: string[], config: Config): Msg {
   const { template, open, suffix } = config
 
   const filePath = args[1]
   let dict: string | string[] = filePath.split(/\\|\//)
-  const fileName = sep + dict.pop()
+  const fileName = getFileName(args)
   const cwd = process.cwd()
   dict = resolve(cwd, dict.join(sep))
   if (!existsSync(dict)) {
@@ -18,7 +21,7 @@ export default function generate(args: string[], config: Config): string {
 
   if (finalPath) {
     writeFileSync(finalPath, template)
-    if(open) {
+    if (open) {
       execSync('code -g ' + finalPath + ':2:3')
     }
     return 'File created successfully'

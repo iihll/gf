@@ -10,7 +10,7 @@ const defaultConfig = {
   version: '2',
   open: true,
   suffix: '.vue',
-  template: 'VUE3_TEMPLATE',
+  template: 'VUE2_TEMPLATE',
   useTel: true,
 }
 

@@ -2,9 +2,9 @@
 import getTemplate from './getTemplate'
 import getConfigJson from './getConfigJson'
 
-export function mergeConfig() {
+export function mergeConfig(fileName) {
   const configJson = getConfigJson()
-  const template = getTemplate(configJson.template)
+  const template = getTemplate(configJson.template, fileName)
 
   return {
     ...configJson,
