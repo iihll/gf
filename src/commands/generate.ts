@@ -13,6 +13,7 @@ export default function generate(args: string[], config: Config): Msg {
   let dict: string | string[] = filePath.split(/\\|\//)
   const fileName = getFileName(args)
   const cwd = process.cwd()
+  dict.pop() // 去掉路径最后一个
   dict = resolve(cwd, dict.join(sep))
   if (!existsSync(dict)) {
     mkdirSync(dict, { recursive: true })
