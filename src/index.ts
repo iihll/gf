@@ -11,7 +11,7 @@ function main(args: string[]) {
         const config = mergeConfig(fileName)
         result = COMMANDS[args[0]](args, config)
       } else {
-        result = COMMANDS[args[0]]()
+        result = COMMANDS[args[0]](args)
       }
     }
   } else {

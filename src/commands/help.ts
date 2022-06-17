@@ -23,8 +23,8 @@ const HELP_MAP = {
 }
 
 export default function help(args: string[]): string {
-  if(args && args.length && HELP_MAP.hasOwnProperty(args[0])) {
-    return HELP_MAP[args[0]]
+  if(args && args.length && HELP_MAP.hasOwnProperty(args[1])) {
+    return HELP_MAP[args[1]]
   }
 
   return [

@@ -17,7 +17,9 @@ export default function config(args: string[], config: Config) {
   const configJson = getConfigJson()
   const key = args[1]
   const value = args[2]
-  configJson[key] = CONFIG_MAP[key](value)
+  if(key && value) {
+    configJson[key] = CONFIG_MAP[key](value)
+  }
   if (value) {
     writeFileSync(`${homedir}/gfConfig.json`, JSON.stringify(configJson), 'utf8')
 
