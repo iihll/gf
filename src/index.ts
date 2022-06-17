@@ -8,10 +8,11 @@ function main(args: string[]) {
     if (COMMANDS[args[0]]) {
       if (args[1]) {
         const fileName = getFileName(args, false)
-        let config = mergeConfig(fileName)
+        const config = mergeConfig(fileName)
         result = COMMANDS[args[0]](args, config)
+      } else {
+        result = COMMANDS[args[0]]()
       }
-      result = COMMANDS[args[0]]()
     }
   } else {
     result = COMMANDS['help'](args)

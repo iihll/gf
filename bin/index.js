@@ -33,5 +33,5 @@ export default {
 <script setup lang="ts">
 
 </script>
-`};function getTemplate(e="VUE2_TEMPLATE",n="index"){var t=getConfigJson();let o=TEL_MAP[e](n);n=path.join(process$1.cwd(),"./tel.vue");return fs.existsSync(n)&&t.useTel&&(o=fs.readFileSync(n).toString()),o}function mergeConfig(e){var n=getConfigJson(),e=getTemplate(n.template,e);return{...n,template:e}}function main(e){let n=null;var t;e&&0<e.length?COMMANDS[e[0]]&&(e[1]&&(t=mergeConfig(getFileName(e,!1)),n=COMMANDS[e[0]](e,t)),n=COMMANDS[e[0]]()):n=COMMANDS.help(e),console.log(n)}main(process.argv.slice(2));
+`};function getTemplate(e="VUE2_TEMPLATE",n="index"){var t=getConfigJson();let o=TEL_MAP[e](n);n=path.join(process$1.cwd(),"./tel.vue");return fs.existsSync(n)&&t.useTel&&(o=fs.readFileSync(n).toString()),o}function mergeConfig(e){var n=getConfigJson(),e=getTemplate(n.template,e);return{...n,template:e}}function main(e){let n=null;var t;e&&0<e.length?COMMANDS[e[0]]&&(n=e[1]?(t=mergeConfig(getFileName(e,!1)),COMMANDS[e[0]](e,t)):COMMANDS[e[0]]()):n=COMMANDS.help(e),console.log(n)}main(process.argv.slice(2));
 //# sourceMappingURL=index.js.map
